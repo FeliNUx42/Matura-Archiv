@@ -1,6 +1,7 @@
 import algoliasearch from "algoliasearch";
+import { ALG_SECRET_KEY } from '$env/static/private';
 
-const client = algoliasearch("K4983KEQZ8", "0599d99b7c0aa6c92daab423161b4acd");
+const client = algoliasearch("K4983KEQZ8", ALG_SECRET_KEY);
 const index = client.initIndex("arbeiten");
 
 export default (data, rec) => {
