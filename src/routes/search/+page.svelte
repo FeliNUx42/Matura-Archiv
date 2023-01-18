@@ -3,8 +3,9 @@
 </svelte:head>
 
 <script>
-  import { gridActive, hitsList, filterActive } from "$lib/stores.js";
-  import search from "$lib/search/algolia.js";
+  import { gridActive, hitsList } from "$lib/stores.js";
+  import searchClient from "$lib/search/algolia.js";
+  import instantsearch from "instantsearch.js";
   import getWidgets from "$lib/search/widgets.js";
 
   import { onMount, onDestroy } from "svelte";
@@ -14,13 +15,34 @@
   import FilterBtn from "$lib/search/FilterBtn.svelte";
   import GridBtn from "$lib/search/GridBtn.svelte";
 
+  let search;
+
   onMount(() => {
+    console.log(instantsearch);
+    
+    search = instantsearch({
+      indexName: "arbeiten",
+      searchClient,
+      routing: {
+        stateMapping: {
+          stateToRoute(uiState) {
+            let {page, ...rest} = uiState.arbeiten;
+            uiState.arbeiten = rest;
+            return uiState;
+          },
+          routeToState(routeState) {
+            return routeState
+          },
+        }
+      }
+    });
+
     search.addWidgets(getWidgets());
     search.start();
   })
 
   onDestroy(() => {
-    if (search.started) search.dispose()
+    if (search?.started) search.dispose()
   })
 </script>
 
