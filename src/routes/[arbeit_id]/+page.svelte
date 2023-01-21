@@ -90,12 +90,12 @@
     </div>
 
     {#if data.intro}
-    <h3 class="text-xl text-gray-800 mb-1 dark:text-gray-300">Intro</h3>
-    <p class="text-justify mb-4">{data.intro}</p>
+    <h3 class="text-xl text-gray-800 mb-2 dark:text-gray-300">Intro</h3>
+    <p class="text-justify mb-4 leading-7">{data.intro}</p>
     {/if}
     
-    <h3 class="text-xl text-gray-800 mb-1 dark:text-gray-300">Abstract</h3>
-    <p class="text-justify pb-8 border-b border-gray-300 dark:border-gray-600">{data.abstract}</p>
+    <h3 class="text-xl text-gray-800 mb-2 dark:text-gray-300">Abstract</h3>
+    <p class="text-justify pb-8 leading-7 border-b border-gray-300 dark:border-gray-600">{data.abstract}</p>
   </div>
 
   <div class="grid grid-cols-2 divide-x divide-gray-300 mb-10 dark:divide-gray-600">
